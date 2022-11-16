@@ -1,9 +1,7 @@
 FROM vimagick/squid
 MAINTAINER nailgun <dbashkatov@gmail.com>
 
-RUN /usr/lib/squid/ssl_crtd -c -s /var/lib/ssl_db && \
-    chown -R squid:squid /var/lib/ssl_db && \
-    apk add -U ca-certificates && \
+RUN apk add -U ca-certificates && \
     update-ca-certificates && \
     apk add perl && \
     rm -rf /var/cache/apk/*

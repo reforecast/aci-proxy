@@ -39,6 +39,7 @@ eval "echo \"$(cat /etc/squid/cache.conf.tpl)\"" > /etc/squid/cache.conf
 
 if [ -z "$(ls -A /var/cache/squid)" ]; then
     squid -zN -f ${conf_file}
+    /usr/lib/squid/security_file_certgen -c -s /var/cache/squid/ssl_db -M 4MB
     chown -R squid:squid /var/cache/squid
     rm /var/log/squid/cache.log
 fi
